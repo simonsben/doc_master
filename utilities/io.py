@@ -1,7 +1,8 @@
-from PIL.Image import open
+from PIL.Image import open, fromarray
 from pathlib import Path
 from numpy import asarray, dot
 from pandas import DataFrame
+from matplotlib.pyplot import imsave
 
 
 def make_path(filename):
@@ -21,6 +22,10 @@ def load_image(path):
     image = to_greyscale(asarray(image)).copy()
 
     return image
+
+
+def save_image(image, path):
+    imsave(path, image, cmap='gray')
 
 
 def save_points(points):

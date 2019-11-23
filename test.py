@@ -1,15 +1,14 @@
-from utilities.io import load_image
-from utilities.visualization import show_image
-from core.image_handling import get_input
-from core.interaction import label_points
+from utilities.io import load_image, save_image
+from utilities.visualization import bound_words, show_image
+from core.image_handling import get_input, perform_ocr
 
 blank = load_image('images/test.png')
+scanned = load_image('images/base_scan.png')
 
-label_points(blank)
-# scanned = load_image('images/base_scan.png')
-#
-# diff = get_input(blank, scanned)
-# show_image(diff)
-#
-# show_image(scanned)
-# show_image(blank, True)
+input_content = get_input(blank, scanned)
+save_image(input_content, 'images/input_content.png')
+
+response = perform_ocr('images/input_content.png')
+
+fig = show_image(input_content)
+bound_words(fig, response)
