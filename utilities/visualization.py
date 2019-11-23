@@ -15,13 +15,7 @@ def bound_words(fig, bounds):
     ax = fig.gca()
 
     for bound in bounds:
-        poly_bounds = list(bound.bounding_poly.vertices)
-        base = poly_bounds[0]
-        top = poly_bounds[2]
-
-        width = top.x - base.x
-        height = top.y - base.y
-
-        ax.add_artist(Rectangle((base.x, base.y), width, height, fill=False, edgecolor='k'))
+        _, x, y, width, height = bound
+        ax.add_artist(Rectangle((x, y), width, height, fill=False, edgecolor='k'))
 
     show()

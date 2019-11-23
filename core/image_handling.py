@@ -17,7 +17,15 @@ def perform_ocr(path, cred_file='credentials.json'):
     image = vision.types.Image(content=content)
     response = client.document_text_detection(image=image)
 
-    # words = []
-    # for index, entry in enumerate(response.text_annotations[1:]):
-    #     words.append((entry.description, ))
-    return response.text_annotations[1:]
+    words = []
+    for bound in response.text_annotations[1:]:
+        poly_bounds = list(bound.bounding_poly.vertices)
+        base = poly_bounds[0]
+        top = poly_bounds[2]
+
+        width = top.x - base.x
+        height = top.y - base.y
+
+        words.append((bound.description, base.x, base.y, width, height))
+
+    return words
