@@ -1,0 +1,5 @@
+data/
+images/
+credentials.json
+__pycache__/
+.idea/
