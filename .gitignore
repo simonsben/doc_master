@@ -1,5 +1,6 @@
 data/
 images/
+tmp/
 credentials.json
 __pycache__/
 .idea/

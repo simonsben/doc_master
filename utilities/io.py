@@ -1,6 +1,7 @@
 from PIL.Image import open
 from pathlib import Path
 from numpy import asarray, dot
+from pandas import DataFrame
 
 
 def make_path(filename):
@@ -20,3 +21,8 @@ def load_image(path):
     image = to_greyscale(asarray(image)).copy()
 
     return image
+
+
+def save_points(points):
+    points = DataFrame(points, columns=('x', 'y'))
+    points.to_csv('data/feature_points.csv')
