@@ -26,7 +26,7 @@ def clean_associations(associations):
     content = []
     for association in associations:
         information = ''
-        for word in association[2:]:
+        for word in reversed(association[2:]):
             information += word[0] + ' '
 
         content.append(information)
