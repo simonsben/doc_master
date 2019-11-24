@@ -1,26 +1,13 @@
-#
-# def group_lines(features):
-#     groups = []
-#
-#
-#     for index, feature in enumerate(features):
-#         for ind, feat in enumerate(features):
-#             if index == ind:
-#                 continue
-#
-#             if
-
-
-def associate_input(features, input):
+def associate_input(features, data_input):
     features = sorted(list(features), reverse=True, key=lambda d: d[0])
-    input = sorted(list(input), reverse=True, key=lambda i: i[1]).copy()
+    data_input = sorted(list(data_input), reverse=True, key=lambda i: i[1]).copy()
 
     associations = {}
     for index, (x, y) in enumerate(features):
         claimed = []
         associations[index] = []
 
-        for ind, entry in enumerate(input):  # go through words
+        for ind, entry in enumerate(data_input):  # go through words
             (term, x_mid, y_mid) = entry
             if x_mid < x or abs(y - y_mid) > 50:            # check if it should be associated
                 continue
@@ -30,6 +17,19 @@ def associate_input(features, input):
 
         # delete once paired
         for ind in reversed(claimed):
-            input.pop(ind)
+            data_input.pop(ind)
 
-    return associations
+    return [list(features[ind]) + associations[ind] for ind in associations]
+
+
+def clean_associations(associations):
+    content = []
+    for association in associations:
+        information = ''
+        for word in association[2:]:
+            information += word[0] + ' '
+
+        content.append(information)
+
+    return content
+

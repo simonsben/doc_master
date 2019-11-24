@@ -29,3 +29,11 @@ def perform_ocr(path, cred_file='credentials.json'):
         words.append((bound.description, base.x, base.y, width, height))
 
     return words
+
+
+# word, x, y, width, height
+def get_center(bound):
+    x_mid = bound[1] + (bound[3] / 2)
+    y_mid = bound[2] + (bound[4] / 2)
+
+    return [x_mid, y_mid]
