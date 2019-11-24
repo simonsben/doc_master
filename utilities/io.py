@@ -1,4 +1,4 @@
-from PIL.Image import open, fromarray
+from PIL.Image import open
 from pathlib import Path
 from numpy import asarray, dot
 from pandas import DataFrame

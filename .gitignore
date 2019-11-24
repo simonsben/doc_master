@@ -1,6 +1,6 @@
 data/
-images/
 tmp/
+venv/
 credentials.json
 __pycache__/
 .idea/

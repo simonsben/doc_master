@@ -1,6 +1,6 @@
 from utilities.visualization import show_image, show
 from utilities.io import save_points
-from matplotlib.pyplot import close, Circle, gca
+from matplotlib.pyplot import close, Circle
 
 
 def label_points(image):
